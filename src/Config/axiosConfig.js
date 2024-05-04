@@ -1,8 +1,6 @@
 import axios from "axios";
 
-const local = "http://localhost:5000/";
-const proxy = "https://orderaheadproxyserver.azurewebsites.net/";
-const BASE_URL = local;
+const BASE_URL = "https://api.weekday.technology/adhoc";
 
 const apiInstance = axios.create({
   baseURL: BASE_URL,
