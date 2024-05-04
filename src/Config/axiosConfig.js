@@ -10,8 +10,6 @@ const apiInstance = axios.create({
 });
 
 apiInstance.interceptors.request.use((config) => {
-  console.log(config.data, "config.data");
-  console.log(config.url, "config.url");
   return config;
 });
 export default apiInstance;
