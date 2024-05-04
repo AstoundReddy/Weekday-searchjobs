@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { jobApi } from "../API/jobApi";
 import CircularProgress from "@mui/material/CircularProgress";
 import { toast } from "react-toastify";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import JobCard from "../Components/JobCard";
 function SearchJobs() {
   const [isLoading, setIsLoading] = useState(false);
@@ -59,6 +59,11 @@ function SearchJobs() {
   return (
     <div>
       <Box sx={{ width: "100%" }}>
+        <Box>
+          <Typography variant="body2" sx={{ textAlign: "left", m: 2, fontWeight: "600", fontFamily: "sans-serif", color: "grey.500", letterSpacing: 1 }}>
+            Filters
+          </Typography>
+        </Box>
         <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly", gap: 4 }}>
           {jobs.map((job, index) => (
             <JobCard
