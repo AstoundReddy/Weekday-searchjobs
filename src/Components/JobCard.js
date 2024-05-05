@@ -60,17 +60,17 @@ function JobCard({ companyName, jobRole, location, jobDetailsFromCompany, logoUr
           View job
         </Button>
         {minExp && maxExp && (
-          <Typography sx={{ textAlign: "left", px: 1 }} color="textSecondary">
+          <Typography sx={{ textAlign: "left", px: 2 , fontFamily : "sans-serif" , fontWeight : 600 , color : "grey.500" , letterSpacing : 1.15, fontSize : 14 }} color="textSecondary">
             Experience: {minExp} - {maxExp} years
           </Typography>
         )}
         {minExp && !maxExp && (
-          <Typography sx={{ textAlign: "left", px: 1 }} color="textSecondary">
+          <Typography sx={{ textAlign: "left", px: 2 , fontFamily : "sans-serif" , fontWeight : 600 , color : "grey.500" , letterSpacing : 1.15, fontSize : 14 }} color="textSecondary">
             Minimum Experience: {minExp} years
           </Typography>
         )}
         {!minExp && maxExp && (
-          <Typography sx={{ textAlign: "left", px: 1 }} color="textSecondary">
+          <Typography sx={{ textAlign: "left", px: 2 , fontFamily : "sans-serif" , fontWeight : 600 , color : "grey.500" , letterSpacing : 1.15, fontSize : 14 }} color="textSecondary">
             Maximum Experience: {maxExp} years
           </Typography>
         )}
