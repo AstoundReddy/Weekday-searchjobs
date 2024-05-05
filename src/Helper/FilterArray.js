@@ -5,17 +5,10 @@ export const roles = [
     { value: 'devOps', label: 'DevOps' },
     { value: 'softwareEngineer', label: 'Software Engineer' },
     { value: 'dataScientist', label: 'Data Scientist' },
-    { value: 'productManager', label: 'Product Manager' },
-    { value: 'projectManager', label: 'Project Manager' },
-    { value: 'qaEngineer', label: 'QA Engineer' },
-    { value: 'databaseAdmin', label: 'Database Administrator' },
-    { value: 'systemAdmin', label: 'System Administrator' },
-    { value: 'networkEngineer', label: 'Network Engineer' },
-    { value: 'securityAnalyst', label: 'Security Analyst' },
-    { value: 'graphicDesigner', label: 'Graphic Designer' },
-    { value: 'uxDesigner', label: 'UX Designer' },
-    { value: 'uiDesigner', label: 'UI Designer' },
-    { value: 'visualDesigner', label: 'Visual Designer' },
+    { value: 'ios', label: 'IOS' },
+    { value: 'android', label: 'Android' },
+    { value: 'tech lead', label: 'Tech Lead' },
+
   ];
   
  export  const employees = [
@@ -48,8 +41,18 @@ export const roles = [
     { value: 'hybrid', label: 'Hybrid' },
   ];
 
- export  const salaries = [
-    { value: '40000', label: '$40,000' },
-    { value: '60000', label: '$60,000' },
-    { value: '80000', label: '$80,000' },
+ export const salaries = [
+    { value: 0, label: '$0K' },
+    { value: 20, label: '$20K' },
+    { value: 40, label: '$40K' },
+    { value: 60, label: '$60K' },
+    { value: 80, label: '$80K' },
+    { value: 100, label: '$100K' },
+    { value: 120, label: '$120K' },
+    { value: 140, label: '$140K' },
+    { value: 160, label: '$160K' },
+    { value: 180, label: '$180K' },
+    { value: 200, label: '$200K' },
+    { value: 220, label: '$220K+' },  // Assuming you might still want an upper category
   ];
+  

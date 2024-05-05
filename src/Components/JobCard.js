@@ -1,23 +1,24 @@
 import { Box, Button, Card, CardActions, Typography } from "@mui/material";
+import { toTitleCase } from "../Helper/TitleCase";
 
 function JobCard({ companyName, jobRole, location, jobDetailsFromCompany, logoUrl, maxExp, maxJdSalary, minExp, minJdSalary, salaryCurrencyCode, jdLink }) {
   return (
-    <Card sx={{ display: "flex", flexDirection: "column", height: "36rem", width: "24rem" }}>
+    <Card sx={{ display: "flex", flexDirection: "column", height: "36rem", width: "24rem" , borderRadius : 4 }}>
       <Box sx={{ display: "flex", alignItems: "flex-start", p: 1, mx: 1 }}>
         <img src={logoUrl} alt="company logo" style={{ width: "30px", height: "30px", alignSelf: "center", textAlign: "left" }} />
         <div style={{ textAlign: "left" }}>
           <Typography sx={{ ml: 2, fontWeight: "600", fontFamily: "sans-serif", color: "grey.500", letterSpacing: 1 }}>{companyName}</Typography>
-          <Typography variant="body1" color="textSecondary" sx={{ ml: 2, fontWeight: "400", fontFamily: "sans-serif" }}>
-            {jobRole}
+          <Typography variant="body1" color="textSecondary" sx={{  ml: 2, fontWeight: "400", fontFamily: "sans-serif" }}>
+            {toTitleCase(jobRole)}
           </Typography>
-          <Typography variant="body2" color="textSecondary" sx={{ ml: 2, fontWeight: "400", fontFamily: "sans-serif" }}>
-            {location}
+          <Typography variant="body2" color="textSecondary" sx={{  ml: 2, fontWeight: "400", fontFamily: "sans-serif" }}>
+            {toTitleCase(location)}
           </Typography>
         </div>
       </Box>
       {minJdSalary && maxJdSalary && (
         <Typography sx={{ textAlign: "left", fontWeight: 300, m: 1, p: 1 }} color="textSecondary" variant="body2">
-          Estimated Salary : {minJdSalary} - {maxJdSalary} {salaryCurrencyCode}✅
+          Estimated Salary : {minJdSalary} - {maxJdSalary} {salaryCurrencyCode} ✅
         </Typography>
       )}
       {minJdSalary && !maxJdSalary && (
@@ -56,7 +57,7 @@ function JobCard({ companyName, jobRole, location, jobDetailsFromCompany, logoUr
         </Box>
       </Box>
       <Box sx={{ mt: "auto" }}>
-        <Button variant="text" onClick={() => window.open(jdLink, "_blank")} sx={{ width: "100%", position: "relative", bottom: "10%" }}>
+        <Button  variant="text" onClick={() => window.open(jdLink, "_blank")} sx={{ width: "100%", position: "relative", bottom: "10%" }}>
           View job
         </Button>
         {minExp && maxExp && (
@@ -75,13 +76,31 @@ function JobCard({ companyName, jobRole, location, jobDetailsFromCompany, logoUr
           </Typography>
         )}
         <CardActions>
-          <Box>
-            <Button variant="contained" color="primary" sx={{ width: "100%", mb: 1 }}>
-              ⚡ Easy Apply
-            </Button>
-            <Button variant="contained" sx={{ width: "100%", bgcolor: "secondary.main" }}>
-              Unlock referral asks
-            </Button>
+          <Box sx = {{width : "100%"}}>
+          <Button
+        variant="contained"
+        color="primary"
+        sx={{
+          width: "100%",
+          mb: 1,
+          textTransform: 'none',  // Disable uppercase text
+          fontWeight : 600,
+          fontFamily : "sans-serif"
+        }}
+      >
+        ⚡ Easy Apply
+      </Button>
+      <Button
+        variant="contained"
+        sx={{
+          width: "100%",
+          bgcolor: "secondary.main",
+          color: 'white',  // Set font color to white
+          textTransform: 'none',  // Disable uppercase text
+        }}
+      >
+        Unlock referral asks
+      </Button>
           </Box>
         </CardActions>
       </Box>

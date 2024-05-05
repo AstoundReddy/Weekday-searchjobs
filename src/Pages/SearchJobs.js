@@ -14,6 +14,24 @@ function SearchJobs() {
   const [index, setIndex] = useState(1);
   const loaderRef = useRef(null);
 
+  const [selectedRole, setSelectedRole] = useState([]);
+  const [selectedNumEmployees, setSelectedNumEmployees] = useState([]);
+  const [selectedExperience, setSelectedExperience] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState([]);
+  const [selectedSalary, setSelectedSalary] = useState([]);
+  const [selectedCompanyName, setSelectedCompanyName] = useState([]);
+  
+  function filterJobs() {
+    return jobs.filter((job) => (
+      (selectedRole.length === 0 || selectedRole.some(role => job.jobRole === role.value)) &&
+      (selectedExperience.length === 0 || selectedExperience.some(exp => job.minExp <= parseInt(exp.value) && job.maxExp >= parseInt(exp.value))) &&
+      (selectedLocation.length === 0 || selectedLocation.some(loc => job.location === loc.value)) &&
+      (selectedSalary.length === 0 || selectedSalary.some(salary => job.minJdSalary >= salary.value)) &&
+      (selectedCompanyName.length === 0 || selectedCompanyName.some(name => job.companyName.toLowerCase().includes(name.value.toLowerCase())))
+    ));
+  }
+  
+  
   
   useEffect(() => {
     const getData = async () => {
@@ -77,22 +95,42 @@ function SearchJobs() {
         <Box sx = {{m:2 , mx : 8}}>
         <Grid container spacing={2} alignItems="center">
       <Grid item>
-        <Select styles={customStyles} options={roles} placeholder="Role" />
-      </Grid>
-      <Grid item>
-        <Select options={employees} placeholder="Number of employees" />
-      </Grid>
-      <Grid item>
-        <Select options={experiences} placeholder="Experience" />
-      </Grid>
-      <Grid item>
-        <Select options={locations} placeholder="Location" />
-      </Grid>
-      <Grid item>
-        <Select options={salaries} placeholder="Salary" />
+        <Select
+        isMulti
+        onChange={setSelectedRole}
+        styles={customStyles} options={roles} placeholder="Role" />
       </Grid>
       <Grid item>
         <Select
+        isMulti
+        styles={customStyles}
+        onChange={setSelectedNumEmployees}
+        options={employees} placeholder="Number of employees" />
+      </Grid>
+      <Grid item>
+        <Select
+        isMulti
+        styles={customStyles}
+        onChange={setSelectedExperience}
+        options={experiences} placeholder="Experience" />
+      </Grid>
+      <Grid item>
+        <Select
+        isMulti
+        styles={customStyles}
+        onChange={setSelectedLocation}
+        options={locations} placeholder="Location" />
+      </Grid>
+      <Grid item>
+        <Select
+        isMulti
+        styles={customStyles}
+        onChange={setSelectedSalary}
+        options={salaries} placeholder="Minimum Salary" />
+      </Grid>
+      <Grid item>
+        <Select
+        styles={customStyles}
           options={[]} // You would populate this similar to the others
           placeholder="Company Name"
         />
@@ -100,7 +138,7 @@ function SearchJobs() {
     </Grid>
         </Box>
         <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly", gap: 4 }}>
-          {jobs.map((job, index) => (
+          {filterJobs().map((job, index) => (
             <JobCard
               key={index}
               companyName={job.companyName}
