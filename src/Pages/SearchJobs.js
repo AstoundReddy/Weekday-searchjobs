@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { jobApi } from "../API/jobApi";
 import CircularProgress from "@mui/material/CircularProgress";
-import { toast } from "react-toastify";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { toast, ToastContainer } from "react-toastify";
+import { Box, Container, Grid, TextField, Typography } from "@mui/material";
 import JobCard from "../Components/JobCard";
-import Filters from "../Components/Filters";
 import Select from 'react-select'
 import { employees, experiences, locations, roles, salaries } from "../Helper/FilterArray";
 
@@ -19,15 +18,15 @@ function SearchJobs() {
   const [selectedExperience, setSelectedExperience] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState([]);
   const [selectedSalary, setSelectedSalary] = useState([]);
-  const [selectedCompanyName, setSelectedCompanyName] = useState([]);
-  
+  const [companyNameFilter, setCompanyNameFilter] = useState(""); // State for input text
+
   function filterJobs() {
     return jobs.filter((job) => (
       (selectedRole.length === 0 || selectedRole.some(role => job.jobRole === role.value)) &&
       (selectedExperience.length === 0 || selectedExperience.some(exp => job.minExp <= parseInt(exp.value) && job.maxExp >= parseInt(exp.value))) &&
       (selectedLocation.length === 0 || selectedLocation.some(loc => job.location === loc.value)) &&
       (selectedSalary.length === 0 || selectedSalary.some(salary => job.minJdSalary >= salary.value)) &&
-      (selectedCompanyName.length === 0 || selectedCompanyName.some(name => job.companyName.toLowerCase().includes(name.value.toLowerCase())))
+      (companyNameFilter === "" || job.companyName.toLowerCase().includes(companyNameFilter.toLowerCase())) // Filter by text input
     ));
   }
   
@@ -58,7 +57,7 @@ function SearchJobs() {
       setJobs((prevJobs) => [...prevJobs, ...response.data.jdList]);
       setIndex((prevIndex) => prevIndex + 1);
     } catch (error) {
-      toast.error("Error while fetching data");
+     console.log("Error while fetching data");
     } finally {
       setIsLoading(false);
     }
@@ -68,7 +67,9 @@ function SearchJobs() {
     container: (provided) => ({
       ...provided,
       minWidth: "8rem",  
-      textAlign : "left" // Set the minimum width you desire
+      textAlign : "left", // Set the minimum width you desire
+      fontFamily: "'Lexend', sans-serif",
+      fontSize : "0.8rem"
     }),
   };
   useEffect(() => {
@@ -91,6 +92,7 @@ function SearchJobs() {
   }, [fetchData]);
   return (
     <div>
+
       <Box sx={{ width: "100%" }}>
         <Box sx = {{m:2 , mx : 8}}>
         <Grid container spacing={2} alignItems="center">
@@ -129,11 +131,14 @@ function SearchJobs() {
         options={salaries} placeholder="Minimum Salary" />
       </Grid>
       <Grid item>
-        <Select
-        styles={customStyles}
-          options={[]} // You would populate this similar to the others
-          placeholder="Company Name"
-        />
+      <input
+                placeholder="Company Name"
+                value={companyNameFilter}
+                onChange={e => setCompanyNameFilter(e.target.value)}
+             style={{padding : "0.5rem"  , fontSize : "0.8rem" ,  
+              fontFamily: "'Lexend', sans-serif"
+            }}
+              />
       </Grid>
     </Grid>
         </Box>
@@ -155,8 +160,8 @@ function SearchJobs() {
             />
           ))}
         </Box>
-        <div ref={loaderRef}>END</div>
         {isLoading && <CircularProgress />}
+        <Box ref={loaderRef} sx= {{background : "black" , color:"white" , mt : 2}}>END</Box>
       </Box>
     </div>
   );

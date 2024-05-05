@@ -7,11 +7,11 @@ function JobCard({ companyName, jobRole, location, jobDetailsFromCompany, logoUr
       <Box sx={{ display: "flex", alignItems: "flex-start", p: 1, mx: 1 }}>
         <img src={logoUrl} alt="company logo" style={{ width: "30px", height: "30px", alignSelf: "center", textAlign: "left" }} />
         <div style={{ textAlign: "left" }}>
-          <Typography sx={{ ml: 2, fontWeight: "600", fontFamily: "sans-serif", color: "grey.500", letterSpacing: 1 }}>{companyName}</Typography>
-          <Typography variant="body1" color="textSecondary" sx={{  ml: 2, fontWeight: "400", fontFamily: "sans-serif" }}>
+          <Typography sx={{ ml: 2, fontWeight: "600", color: "grey.500", letterSpacing: 1 }}>{companyName}</Typography>
+          <Typography variant="body1" color="textSecondary" sx={{  ml: 2, fontWeight: "400" }}>
             {toTitleCase(jobRole)}
           </Typography>
-          <Typography variant="body2" color="textSecondary" sx={{  ml: 2, fontWeight: "400", fontFamily: "sans-serif" }}>
+          <Typography variant="body2" color="textSecondary" sx={{  ml: 2, fontWeight: "400" }}>
             {toTitleCase(location)}
           </Typography>
         </div>
@@ -47,7 +47,7 @@ function JobCard({ companyName, jobRole, location, jobDetailsFromCompany, logoUr
               bottom: 0,
               left: 0,
               width: "100%",
-              height: "100px",
+              height: "10rem",
               backgroundImage: "linear-gradient(to bottom, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.9) , rgba(255, 255, 255, 1))",
             },
           }}>
@@ -57,7 +57,7 @@ function JobCard({ companyName, jobRole, location, jobDetailsFromCompany, logoUr
         </Box>
       </Box>
       <Box sx={{ mt: "auto" }}>
-        <Button  variant="text" onClick={() => window.open(jdLink, "_blank")} sx={{ width: "100%", position: "relative", bottom: "10%" }}>
+        <Button  variant="text" color="secondary" onClick={() => window.open(jdLink, "_blank")} sx={{ width: "100%", position: "relative", bottom: "5%" }}>
           View job
         </Button>
         {minExp && maxExp && (
@@ -88,7 +88,7 @@ function JobCard({ companyName, jobRole, location, jobDetailsFromCompany, logoUr
           fontFamily : "sans-serif"
         }}
       >
-        ⚡ Easy Apply
+       <Typography> ⚡ Easy Apply</Typography>
       </Button>
       <Button
         variant="contained"
@@ -99,7 +99,7 @@ function JobCard({ companyName, jobRole, location, jobDetailsFromCompany, logoUr
           textTransform: 'none',  // Disable uppercase text
         }}
       >
-        Unlock referral asks
+        <Typography>Unlock referral asks</Typography>
       </Button>
           </Box>
         </CardActions>
