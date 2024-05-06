@@ -13,7 +13,6 @@ This repository contains the code for a Job Search application built with React.
 
 - React
 - Material-UI
-- React Select
 - Yarn
 
 ## Prerequisites
