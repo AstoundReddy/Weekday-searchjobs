@@ -32,8 +32,8 @@ function JobCard({ companyName, jobRole, location, jobDetailsFromCompany, logoUr
         </Typography>
       )}
 
-      <Box sx={{ flexGrow: 1, overflow: "hidden", p: 1, mx: 1 }}>
-        <Typography sx={{ fontWeight: 600, textAlign: "left" }} variant="body1" color="textSecondary">
+      <Box sx={{ flexGrow: 1, overflow: "hidden", mx: 1 }}>
+        <Typography sx={{ fontWeight: 500, textAlign: "left" }} variant="body1" color="textPrimary">
           About Company:
         </Typography>
         <Box
@@ -57,7 +57,7 @@ function JobCard({ companyName, jobRole, location, jobDetailsFromCompany, logoUr
         </Box>
       </Box>
       <Box sx={{ mt: "auto" }}>
-        <Button  variant="text" color="secondary" onClick={() => window.open(jdLink, "_blank")} sx={{ width: "100%", position: "relative", bottom: "5%" }}>
+        <Button  variant="text" color="secondary" onClick={() => window.open(jdLink, "_blank")} sx={{ width: "100%", position: "relative", bottom: "5%" , textTransform : "none" , fontWeight : 400}}>
           View job
         </Button>
         {minExp && maxExp && (
@@ -95,8 +95,8 @@ function JobCard({ companyName, jobRole, location, jobDetailsFromCompany, logoUr
         sx={{
           width: "100%",
           bgcolor: "secondary.main",
-          color: 'white',  // Set font color to white
-          textTransform: 'none',  // Disable uppercase text
+          color: 'white',  
+          textTransform: 'none',  
         }}
       >
         <Typography>Unlock referral asks</Typography>

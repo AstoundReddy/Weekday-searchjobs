@@ -38,7 +38,7 @@ export const roles = [
  export  const locations = [
     { value: 'remote', label: 'Remote' },
     { value: 'onsite', label: 'On-site' },
-    { value: 'hybrid', label: 'Hybrid' },
+    // { value: 'hybrid', label: 'Hybrid' },
   ];
 
  export const salaries = [
