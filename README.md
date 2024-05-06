@@ -5,7 +5,7 @@ This repository contains the code for a Job Search application built with React.
 ## Features
 
 - Job listings fetched from an external API.
-- Advanced job filtering based on role, experience, location, and salary.
+- Job filtering based on role, experience, location, and salary.
 - Infinite scrolling for job listings.
 - Responsive design for desktop and mobile users.
 
@@ -25,7 +25,7 @@ Before you begin, ensure you have met the following requirements:
 
 To run this project locally, run the following commands:
    ```bash
-   git clone https://your-repository-url.git
-   cd your-repository-directory
+   git clone https://github.com/AstoundReddy/Weekday-searchjobs.git
+   cd Weekday-searchjobs
    yarn install
    yarn start
