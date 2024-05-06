@@ -3,7 +3,6 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SearchJobs from "./Pages/SearchJobs";
 import { ThemeProvider, createTheme } from "@mui/material";
-import { ToastContainer } from "react-toastify";
 const theme = createTheme({
   palette: {
     primary: {

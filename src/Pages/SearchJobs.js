@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { jobApi } from "../API/jobApi";
 import CircularProgress from "@mui/material/CircularProgress";
-import { toast, ToastContainer } from "react-toastify";
 import { Box, Container, Grid, TextField, Typography } from "@mui/material";
 import JobCard from "../Components/JobCard";
 import Select from 'react-select'
@@ -20,20 +19,16 @@ function SearchJobs() {
   const [selectedSalary, setSelectedSalary] = useState([]);
   const [companyNameFilter, setCompanyNameFilter] = useState(""); // State for input text
 
-  function filterJobs() {
+  const filterJobs = useCallback(() => {
     return jobs.filter((job) => (
       (selectedRole.length === 0 || selectedRole.some(role => job.jobRole === role.value)) &&
-      (selectedExperience.length === 0 || selectedExperience.some(exp => job.minExp <= parseInt(exp.value) && job.maxExp >= parseInt(exp.value))) &&
-      (selectedLocation.length === 0 || selectedLocation.some(loc => 
-        loc.value === "onsite" ? job.location !== "remote" : job.location === loc.value
-      )) &&   
+      (selectedExperience.length === 0 || job.minExp <= Math.max(...selectedExperience.map(exp => parseInt(exp.value))) && job.maxExp >= Math.min(...selectedExperience.map(exp => parseInt(exp.value)))) &&
+      (selectedLocation.length === 0 || selectedLocation.some(loc => loc.value === "onsite" ? job.location !== "remote" : job.location === loc.value)) &&
       (selectedSalary.length === 0 || selectedSalary.some(salary => job.minJdSalary >= salary.value)) &&
-      (companyNameFilter === "" || job.companyName.toLowerCase().includes(companyNameFilter.toLowerCase())) // Filter by text input
+      (companyNameFilter === "" || job.companyName.toLowerCase().includes(companyNameFilter.toLowerCase()))
     ));
-  }
-  
-  
-  
+  }, [jobs, selectedRole, selectedExperience, selectedLocation, selectedSalary, companyNameFilter]);
+
   useEffect(() => {
     const getData = async () => {
       setIsLoading(true);
